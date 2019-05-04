@@ -13,6 +13,7 @@ using MovieRecommenderMVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieRecommenderMVC.DAL.Context;
+using MovieRecommenderMVC.DAL.Entities;
 
 namespace MovieRecommenderMVC
 {
@@ -35,14 +36,15 @@ namespace MovieRecommenderMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddDbContext<MovieDbContext>(options =>
-            //options.UseSqlServer(
-            //        Configuration.GetConnectionString("MovieConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddDbContext<MovieDbContext>(options =>
+            options.UseSqlServer(
+                    Configuration.GetConnectionString("MovieConnection")));
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<MovieDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
