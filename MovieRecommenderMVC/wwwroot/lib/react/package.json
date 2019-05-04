@@ -1,0 +1,29 @@
+{
+  "name": "recommender",
+  "version": "1.0.0",
+  "description": "standart",
+  "main": "app.js",
+  "scripts": {
+    "webpack": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --env.dist=false",
+    "dev:dist": "webpack --mode development",
+    "build": "webpack --mode production",
+    "prod": "webpack --mode development"
+  },
+  "author": "Max von Lancaster",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack-cli": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.30.0"
+  }
+}
