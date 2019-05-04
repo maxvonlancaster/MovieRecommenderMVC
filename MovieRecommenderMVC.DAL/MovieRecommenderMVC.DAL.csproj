@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190501143901_one.cs" />
+    <Compile Remove="Migrations\20190504192456_User.cs" />
+    <Compile Remove="Migrations\20190504192809_User2.cs" />
+    <Compile Remove="Migrations\20190504194227_User3.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="MovieConnection.db" />
   </ItemGroup>
 
