@@ -3,10 +3,11 @@ using MovieRecommenderMVC.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly MovieDbContext _movieDbContext;
 

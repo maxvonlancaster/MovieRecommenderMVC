@@ -6,11 +6,12 @@ module.exports = env => {
     return {
         context: __dirname,
         entry: {
-            app: './index.js'
+            app: './index.js',
+            movieApp: './Movies.js'
         },
         output: {
             path: __dirname + "/dist",
-            filename: 'bundle.js'
+            filename: '[name]bundle.js'
             //path: path.resolve(__dirname, 'dist')
         },
         resolve: {

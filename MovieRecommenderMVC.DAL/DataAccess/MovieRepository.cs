@@ -3,10 +3,11 @@ using MovieRecommenderMVC.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
-    public class MovieRepository
+    public class MovieRepository : IMovieRepository
     {
         private readonly MovieDbContext _movieDbContext;
 
@@ -29,9 +30,17 @@ namespace MovieRecommenderMVC.DAL.DataAccess
 
         public List<Movie> GetAll(List<int> ids)
         {
-            return _movieDbContext.Movies
-                .Where(m => ids.Contains(m.MovieId))
-                .ToList();
+            if (ids != null)
+            {
+                return _movieDbContext.Movies
+                    .Where(m => ids.Contains(m.MovieId))
+                    .ToList();
+            }
+            else
+            {
+                var movies = _movieDbContext.Movies.ToList();
+                return movies;
+            }
         }
 
         public void Update(Movie entity)

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieRecommenderMVC.DAL.Context;
 using MovieRecommenderMVC.DAL.Entities;
+using MovieRecommenderMVC.Extensions;
 
 namespace MovieRecommenderMVC
 {
@@ -45,6 +46,7 @@ namespace MovieRecommenderMVC
                     Configuration.GetConnectionString("MovieConnection")));
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<MovieDbContext>();
+            services.RegisterServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
