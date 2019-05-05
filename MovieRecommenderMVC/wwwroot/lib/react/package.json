@@ -2,7 +2,7 @@
   "name": "recommender",
   "version": "1.0.0",
   "description": "standart",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "webpack": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
