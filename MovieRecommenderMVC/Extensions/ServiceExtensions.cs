@@ -13,8 +13,11 @@ namespace MovieRecommenderMVC.Extensions
         {
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGenreService, GenreService>();
+
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
 
             // Add all other services here.
             return services;

@@ -1,4 +1,5 @@
-﻿using MovieRecommenderMVC.DAL.Entities;
+﻿using MovieRecommenderMVC.BLL.Models;
+using MovieRecommenderMVC.DAL.Entities;
 using System.Collections.Generic;
 
 namespace MovieRecommenderMVC.BLL.Services.Interfaces
@@ -7,12 +8,14 @@ namespace MovieRecommenderMVC.BLL.Services.Interfaces
     {
         void Add(Movie entity);
 
-        Movie Get(int id);
+        MovieModel Get(int id);
 
-        List<Movie> GetAll(List<int> ids);
+        List<MovieModel> GetAll(List<int> ids);
 
         void Update(Movie entity);
 
         void Delete(Movie entity);
+
+        void DeleteById(int id);
     }
 }
