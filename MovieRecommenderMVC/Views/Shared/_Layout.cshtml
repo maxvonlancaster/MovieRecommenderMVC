@@ -17,8 +17,13 @@
     </environment>
 </head>
 <body>
+    <div class="glyphicon glyphicon-chevron-down go-to-page-bottom sidenav"
+          onclick="window.scrollTo(0,document.body.scrollHeight);">
+
+    </div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -33,6 +38,8 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Movie" asp-action="Movie">Movies</a></li>
+
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -42,6 +49,7 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        
         @RenderBody()
         <hr />
         <footer>
@@ -71,7 +79,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </body>
 </html>

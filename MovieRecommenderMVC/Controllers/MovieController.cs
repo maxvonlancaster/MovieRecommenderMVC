@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieRecommenderMVC.BLL.Models;
 using MovieRecommenderMVC.BLL.Services.Interfaces;
+using MovieRecommenderMVC.DAL.Entities;
 
 namespace MovieRecommenderMVC.Controllers
 {
@@ -7,10 +9,12 @@ namespace MovieRecommenderMVC.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
+        private readonly IGenreService _genreService;
 
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieService movieService, IGenreService genreService)
         {
             _movieService = movieService;
+            _genreService = genreService;
         }
 
         public IActionResult Movie()
@@ -26,6 +30,43 @@ namespace MovieRecommenderMVC.Controllers
             return Json(movies);
         }
 
+        [HttpPost]
+        [Route("addMovie")]
+        public void AddMovie([FromBody]MovieModel postdata)
+        {
+            var movie = new Movie()
+            {
+                Name = postdata.MovieName,
+                Ganre = _genreService.GetGenreByName(postdata.MovieGanre)
+            };
+            _movieService.Add(movie);
+        }
 
+        [HttpPost]
+        [Route("UpdateMovie")]
+        public void UpdateMovie([FromBody]MovieModel postdata)
+        {
+            var movie = new Movie()
+            {
+                MovieId = postdata.MovieId ?? 0,
+                Name = postdata.MovieName
+            };
+            _movieService.Update(movie);
+        }
+
+        [HttpPost]
+        [Route("deleteMovie")]
+        public void DeleteMovie([FromBody]MovieModel postdata)
+        {
+            _movieService.DeleteById(postdata.MovieId ?? 0);
+        }
+
+        [HttpGet]
+        [Route("getGenres")]
+        public ActionResult GetGenres()
+        {
+            var genres = _genreService.GetAll(null);
+            return Json(genres);
+        }
     }
 }

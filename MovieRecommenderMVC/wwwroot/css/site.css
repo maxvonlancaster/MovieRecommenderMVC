@@ -23,6 +23,32 @@ body {
     width: 100%;
 }
 
+.go-to-page-bottom {
+    margin-left: 90px;
+    margin-top: 180px;
+}
+
+.action-column {
+    width: 60px;
+}
+
+.genre-column {
+    width: 80px;
+}
+
+.sidenav {
+    height: 5%; /* Full-height: remove this if you want "auto" height */
+    width: 50px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    border: 1px double black;
+    text-align: center;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;

@@ -17,6 +17,7 @@ namespace MovieRecommenderMVC.DAL.DataAccess
 
         public void Add(User entity) {
             _movieDbContext.Users.Add(entity);
+            _movieDbContext.SaveChanges();
         }
 
         public User Get(int id) {
@@ -33,10 +34,12 @@ namespace MovieRecommenderMVC.DAL.DataAccess
 
         public void Update(User entity) {
             _movieDbContext.Users.Update(entity);
+            _movieDbContext.SaveChanges();
         }
 
         public void Delete(User entity) {
             _movieDbContext.Users.Remove(entity);
+            _movieDbContext.SaveChanges();
         }
     }
 }

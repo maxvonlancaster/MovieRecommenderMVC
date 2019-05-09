@@ -19,6 +19,8 @@ namespace MovieRecommenderMVC.DAL.Context
 
         public DbSet<UserMovie> UserMovies { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+
         public DbSet<Microsoft.AspNetCore.Identity.IdentityUserClaim<string>> IdentityUserClaims { get; set; }
     }
 }

@@ -19,12 +19,14 @@ namespace MovieRecommenderMVC.DAL.DataAccess
         public void Add(Movie entity)
         {
             _movieDbContext.Movies.Add(entity);
+            _movieDbContext.SaveChanges();
         }
 
         public Movie Get(int id)
         {
             return _movieDbContext.Movies
                 .Where(m => m.MovieId == id)
+                .Include(m => m.Ganre)
                 .FirstOrDefault();
         }
 
@@ -34,11 +36,14 @@ namespace MovieRecommenderMVC.DAL.DataAccess
             {
                 return _movieDbContext.Movies
                     .Where(m => ids.Contains(m.MovieId))
+                    .Include(m => m.Ganre)
                     .ToList();
             }
             else
             {
-                var movies = _movieDbContext.Movies.ToList();
+                var movies = _movieDbContext.Movies
+                    .Include(m => m.Ganre)
+                    .ToList();
                 return movies;
             }
         }
@@ -46,11 +51,13 @@ namespace MovieRecommenderMVC.DAL.DataAccess
         public void Update(Movie entity)
         {
             _movieDbContext.Movies.Update(entity);
+            _movieDbContext.SaveChanges();
         }
 
         public void Delete(Movie entity)
         {
             _movieDbContext.Movies.Remove(entity);
+            _movieDbContext.SaveChanges();
         }
     }
 }

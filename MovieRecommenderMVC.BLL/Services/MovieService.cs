@@ -1,6 +1,7 @@
 ﻿using MovieRecommenderMVC.BLL.Services.Interfaces;
 using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 using MovieRecommenderMVC.DAL.Entities;
+using MovieRecommenderMVC.BLL.Models;
 using System.Collections.Generic;
 
 namespace MovieRecommenderMVC.BLL.Services
@@ -19,14 +20,31 @@ namespace MovieRecommenderMVC.BLL.Services
             _movieRepository.Add(entity);
         }
 
-        public Movie Get(int id)
+        public MovieModel Get(int id)
         {
-            return _movieRepository.Get(id);
+            var movie = _movieRepository.Get(id);
+            return new MovieModel()
+            {
+                MovieId = movie.MovieId,
+                MovieGanre = movie.Ganre.GenreName,
+                MovieName = movie.Name
+            }; 
         }
 
-        public List<Movie> GetAll(List<int> ids)
+        public List<MovieModel> GetAll(List<int> ids)
         {
-            return _movieRepository.GetAll(ids);
+            var movies = _movieRepository.GetAll(ids);
+            var movieModels = new List<MovieModel>();
+            foreach (var movie in movies)
+            {
+                movieModels.Add(new MovieModel()
+                {
+                    MovieId = movie.MovieId,
+                    MovieName = movie.Name,
+                    MovieGanre = movie.Ganre?.GenreName,
+                });
+            }
+            return movieModels;
         }
 
         public void Update(Movie entity)
@@ -37,6 +55,12 @@ namespace MovieRecommenderMVC.BLL.Services
         public void Delete(Movie entity)
         {
             _movieRepository.Delete(entity);
+        }
+
+        public void DeleteById(int id)
+        {
+            var entity = _movieRepository.Get(id);
+            Delete(entity);
         }
     }
 }
