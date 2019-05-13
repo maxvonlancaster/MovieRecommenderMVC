@@ -4,8 +4,8 @@ export default class MovieInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            MovieName: "",
-            MovieGanre: "",
+            MovieName: this.props.movieName || "",
+            MovieGanre: this.props.movieName || "",
             genres: [],
         };
 
@@ -18,7 +18,7 @@ export default class MovieInput extends Component {
     componentWillMount() {
         const genres = fetch("Movie/getGenres")
             .then(res => res.json())
-            .then((result) => { console.log(result); this.setState({ genres: result, MovieGanre: result[0].genreName }) })
+            .then((result) => {this.setState({ genres: result, MovieGanre: result[0].genreName }) })
     }
 
     handleChange(e) {
@@ -50,6 +50,8 @@ export default class MovieInput extends Component {
             MovieName: "",
             MovieGanre: ""
         });
+
+        window.location.reload();
     }
 
     setDropDownList() {
