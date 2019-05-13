@@ -24,7 +24,7 @@ body {
 }
 
 .go-to-page-bottom {
-    margin-left: 90px;
+    margin-left: 50px;
     margin-top: 180px;
 }
 
@@ -32,12 +32,16 @@ body {
     width: 60px;
 }
 
+.rating-column {
+    width: 160px;
+}
+
 .genre-column {
     width: 80px;
 }
 
 .sidenav {
-    height: 5%; /* Full-height: remove this if you want "auto" height */
+    height: 10%; /* Full-height: remove this if you want "auto" height */
     width: 50px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
@@ -54,6 +58,19 @@ body {
     margin: 15px;
 }
 
+.fade {
+    opacity: 1 !important;
+}
+
+.table-movies {
+    margin-left: 80px !important;
+    margin-right: 20px !important;
+    width: 95% !important;
+}
+
+
+
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -61,3 +78,28 @@ body {
         display: none;
     }
 }
+
+%visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+.star-rating__star {
+    display: inline-block;
+    padding: 1px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 1em;
+    color: #ABABAB;
+    transition: color .2s ease-out;
+}
+
+    
+    .is-selected {
+      color: #FFD700 !important;
+    }
+    
+

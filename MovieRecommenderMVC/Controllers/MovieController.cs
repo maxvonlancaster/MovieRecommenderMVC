@@ -43,13 +43,14 @@ namespace MovieRecommenderMVC.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateMovie")]
+        [Route("updateMovie")]
         public void UpdateMovie([FromBody]MovieModel postdata)
         {
             var movie = new Movie()
             {
                 MovieId = postdata.MovieId ?? 0,
-                Name = postdata.MovieName
+                Name = postdata.MovieName,
+                Ganre = _genreService.GetGenreByName(postdata.MovieGanre)
             };
             _movieService.Update(movie);
         }

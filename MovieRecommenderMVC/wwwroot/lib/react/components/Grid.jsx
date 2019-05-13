@@ -1,13 +1,24 @@
 ﻿import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Rating from './Rating.jsx';
+import PopoverUpdateMovie from './PopoverUpdateMovie.jsx';
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 export default class Grid extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [],
-            error: null
+            error: null,
+            popoverOpen: false,
+            genres: [],
+            MovieGanre: "",
         };
+
+        this.toggle = this.toggle.bind(this);
+        this.tableBody = this.tableBody.bind(this);
+        this.tableHeaders = this.tableHeaders.bind(this);
+
     }
 
     componentDidMount() {
@@ -19,6 +30,15 @@ export default class Grid extends Component {
         //xhr.open('GET', url, true);
         //console.log(xhr.statusText);
         //this.setState({ data: JSON.parse(xhr.responseText) })
+        const genres = fetch("Movie/getGenres")
+            .then(res => res.json())
+            .then((result) => { this.setState({ genres: result, MovieGanre: result[0].genreName }) })
+    }
+
+    toggle() {
+        this.setState({
+            popoverOpen: !this.state.popoverOpen
+        });
     }
 
     tableHeaders() {
@@ -26,8 +46,9 @@ export default class Grid extends Component {
         <thead>
         <tr>
                     <th className="action-column">MovieId</th>
-            <th>Name</th>
+                    <th>Name</th>
                     <th className="genre-column">Genre</th>
+                    <th className="rating-column">Rating</th>
                     <th className="action-column">Update</th>
                     <th className="action-column">Delete</th>
         </tr>
@@ -38,14 +59,18 @@ export default class Grid extends Component {
         const data = this.state.data;
 
         return (
-            data.map(function (row) {
+            data.map((row) => {
+                const updateId = "button-update-" + row.movieId;
                 return (<tr id={row.movieId}><td>{row.movieId}</td><td>{row.movieName}</td><td>{row.movieGanre}</td>
                     <td>
-                        <a
-                            className="glyphicon glyphicon-pencil"
-                            aria-hidden="true"
-                            onClick={() => { updateMovie(row.movieId) }}>
-                        </a>
+                        <Rating movieId={row.movieId} />
+                    </td>
+                    <td>
+                        <PopoverUpdateMovie
+                            target={updateId}
+                            data={row}
+                            genres={this.state.genres}
+                            MovieGanre={this.state.MovieGanre} />
                     </td>
                     <td>
                         <a
@@ -101,7 +126,7 @@ export default class Grid extends Component {
         return (<div>
             <h4>Hello </h4>
 
-            <table className="table table-bordered table-hover">
+            <table className="table table-bordered table-hover table-movies">
                 {this.tableHeaders()}
                 <tbody>{this.tableBody()}</tbody>
             </table>
