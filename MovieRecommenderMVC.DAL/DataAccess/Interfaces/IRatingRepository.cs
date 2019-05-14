@@ -5,8 +5,8 @@ using System.Text;
 
 namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
 {
-    public interface IGenreRepository : IRepository<Genre, int>
+    public interface IRatingRepository : IRepository<UserMovie, int>
     {
-        Genre GetGenreByName(string genreName);
+        UserMovie GetByUserAndMovie(int movieId, string userId);
     }
 }

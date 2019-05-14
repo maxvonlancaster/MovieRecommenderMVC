@@ -4,13 +4,13 @@ using System.Text;
 
 namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<T, E> where T : class
     {
         void Add(T entity);
 
-        T Get(int id);
+        T Get(E id);
 
-        List<T> GetAll(List<int> ids);
+        List<T> GetAll(List<E> ids);
 
         void Update(T entity);
 

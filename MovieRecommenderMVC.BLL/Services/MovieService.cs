@@ -9,10 +9,14 @@ namespace MovieRecommenderMVC.BLL.Services
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
+        private readonly IRatingRepository _ratingRepository;
+        private readonly IUserRepository _userRepository;
 
-        public MovieService(IMovieRepository movieRepository)
+        public MovieService(IMovieRepository movieRepository,
+            IRatingRepository ratingRepository)
         {
             _movieRepository = movieRepository;
+            _ratingRepository = ratingRepository;
         }
 
         public void Add(Movie entity)
@@ -31,17 +35,19 @@ namespace MovieRecommenderMVC.BLL.Services
             }; 
         }
 
-        public List<MovieModel> GetAll(List<int> ids)
+        public List<MovieModel> GetAll(List<int> ids, string userId)
         {
             var movies = _movieRepository.GetAll(ids);
             var movieModels = new List<MovieModel>();
             foreach (var movie in movies)
             {
+                var userMovie = _ratingRepository.GetByUserAndMovie(movie.MovieId, userId);
                 movieModels.Add(new MovieModel()
                 {
                     MovieId = movie.MovieId,
                     MovieName = movie.Name,
                     MovieGanre = movie.Ganre?.GenreName,
+                    Rating = userMovie?.Rating 
                 });
             }
             return movieModels;

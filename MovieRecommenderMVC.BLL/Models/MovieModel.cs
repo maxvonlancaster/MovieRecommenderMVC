@@ -7,5 +7,7 @@
         public string MovieName { get; set; }
 
         public string MovieGanre { get; set; }
+
+        public int? Rating { get; set; }
     }
 }

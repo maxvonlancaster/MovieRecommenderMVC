@@ -4,9 +4,10 @@ export default class Rating extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating: null,
+            rating: this.props.rating || null,
+            initRating: this.props.rating || null,
             temp_rating: null,
-            movieId: null,
+            movieId: this.props.movieId || null,
         }
         //this.rate = this.rate.bind(this);
         //this.star_over = this.star_over.bind(this);
@@ -18,6 +19,38 @@ export default class Rating extends Component {
             rating: rating,
             temp_rating: rating
         });
+        console.log(this.state);
+
+        if (this.state.initRating === null) {
+            const response = fetch("Rating/addRating", {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'movieId': this.state.movieId,
+                    'rating': this.state.rating,
+                })
+            })
+        }
+        else {
+            const response = fetch("Rating/updateRating", {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'movieId': this.state.movieId,
+                    'rating': this.state.rating,
+                })
+            })
+        }
+
+        this.setState({
+            initRating : rating,
+        })
     }
 
     star_over(rating) {
@@ -37,7 +70,6 @@ export default class Rating extends Component {
 
 
     render() {
-        console.log("render()");
         var stars = [];
 
         for (var i = 0; i < 10; i++) {
