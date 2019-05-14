@@ -20,15 +20,15 @@ namespace MovieRecommenderMVC.DAL.DataAccess
             _movieDbContext.SaveChanges();
         }
 
-        public User Get(int id) {
+        public User Get(string id) {
             return _movieDbContext.Users
-                .Where(u => u.UserId == id)
+                .Where(u => u.Id == id)
                 .FirstOrDefault();
         }
 
-        public List<User> GetAll(List<int> ids) {
+        public List<User> GetAll(List<string> ids) {
             return _movieDbContext.Users
-                .Where(u => ids.Contains(u.UserId))
+                .Where(u => ids.Contains(u.Id))
                 .ToList();
         }
 

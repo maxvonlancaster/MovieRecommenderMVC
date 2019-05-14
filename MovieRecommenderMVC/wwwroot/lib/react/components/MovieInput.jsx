@@ -31,7 +31,6 @@ export default class MovieInput extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
         
         const response = fetch("Movie/addMovie", {
             method: 'POST',

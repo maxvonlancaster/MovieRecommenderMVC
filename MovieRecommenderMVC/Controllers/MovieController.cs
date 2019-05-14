@@ -2,6 +2,7 @@
 using MovieRecommenderMVC.BLL.Models;
 using MovieRecommenderMVC.BLL.Services.Interfaces;
 using MovieRecommenderMVC.DAL.Entities;
+using System.Security.Claims;
 
 namespace MovieRecommenderMVC.Controllers
 {
@@ -26,7 +27,8 @@ namespace MovieRecommenderMVC.Controllers
         [Route("getAllMovies")]
         public ActionResult GetAllMovies()
         {
-            var movies = _movieService.GetAll(null);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var movies = _movieService.GetAll(null, userId);
             return Json(movies);
         }
 

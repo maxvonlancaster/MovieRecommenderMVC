@@ -10,7 +10,7 @@ namespace MovieRecommenderMVC.BLL.Services.Interfaces
 
         MovieModel Get(int id);
 
-        List<MovieModel> GetAll(List<int> ids);
+        List<MovieModel> GetAll(List<int> ids, string userId);
 
         void Update(Movie entity);
 

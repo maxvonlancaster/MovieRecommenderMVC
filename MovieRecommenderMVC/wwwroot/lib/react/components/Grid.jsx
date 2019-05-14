@@ -32,7 +32,7 @@ export default class Grid extends Component {
         //this.setState({ data: JSON.parse(xhr.responseText) })
         const genres = fetch("Movie/getGenres")
             .then(res => res.json())
-            .then((result) => { this.setState({ genres: result, MovieGanre: result[0].genreName }) })
+            .then((result) => { console.log(row); this.setState({ genres: result, MovieGanre: result[0].genreName }) })
     }
 
     toggle() {
@@ -63,7 +63,7 @@ export default class Grid extends Component {
                 const updateId = "button-update-" + row.movieId;
                 return (<tr id={row.movieId}><td>{row.movieId}</td><td>{row.movieName}</td><td>{row.movieGanre}</td>
                     <td>
-                        <Rating movieId={row.movieId} />
+                        <Rating movieId={row.movieId} rating={row.rating} />
                     </td>
                     <td>
                         <PopoverUpdateMovie
@@ -126,7 +126,7 @@ export default class Grid extends Component {
         return (<div>
             <h4>Hello </h4>
 
-            <table className="table table-bordered table-hover table-movies">
+            <table className="table table-bordered table-hover table-movies table-striped">
                 {this.tableHeaders()}
                 <tbody>{this.tableBody()}</tbody>
             </table>

@@ -3,16 +3,7 @@ using System.Collections.Generic;
 
 namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
 {
-    public interface IMovieRepository
+    public interface IMovieRepository : IRepository<Movie, int>
     {
-        void Add(Movie entity);
-
-        Movie Get(int id);
-
-        List<Movie> GetAll(List<int> ids);
-
-        void Update(Movie entity);
-
-        void Delete(Movie entity);
     }
 }

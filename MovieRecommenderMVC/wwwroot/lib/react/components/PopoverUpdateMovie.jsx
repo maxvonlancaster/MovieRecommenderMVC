@@ -89,6 +89,7 @@ export default class PopoverUpdateMovie extends Component {
                     aria-hidden="true">
                 </a>
                 <Popover
+                    className="custom-update-popover"
                     placement="top"
                     isOpen={this.state.popoverOpen}
                     target={this.state.target}
@@ -98,20 +99,24 @@ export default class PopoverUpdateMovie extends Component {
                     <PopoverHeader>Update this movie</PopoverHeader>
                     <PopoverBody>
                         <form className="form" onSubmit={this.handleSubmitUpdate} id={formId}>
-                            <label>Movie name</label>
+                            <div className="form-group">
+                                <label className="label-dafault label-form-update">Movie name</label>
                             <input
-                                id={inputId}
+                                    id={inputId}
+                                    className="label-form-update"
                                 name={inputId}
                                 value={this.state.data.movieName}
                                 onChange={this.handleChangeUpdate}
-                                required />
-                            <div>
-                            <label>Movie genre</label>
-                                <select id={selectId} onChange={this.handleDropDownChangeUpdate}>
+                                    required />
+                            </div>
+                            <div className="form-group">
+                                <label className="label-dafault label-form-update">Movie genre</label>
+                                <select id={selectId} className="label-form-update"
+                                    onChange={this.handleDropDownChangeUpdate}>
                                 {this.setDropDownList()}
                                 </select>
                             </div>
-                            <div>
+                            <div className="form-group">
                                 <input type="submit" value="Submit" className="btn--cta" id={buttonId} />
                             </div>
                         </form>
