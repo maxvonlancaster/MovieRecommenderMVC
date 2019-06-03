@@ -28,7 +28,7 @@ module.exports = env => {
                     // more options in the optional jshint object
                     options: {  // :arrow_left: formally jshint property
                         presets: ['babel-preset-env', 'babel-preset-react', 'react'],
-                        plugins: ["transform-class-properties"]
+                        plugins: ["transform-class-properties", "babel-plugin-transform-object-rest-spread"]
                     }
                 }]
             },

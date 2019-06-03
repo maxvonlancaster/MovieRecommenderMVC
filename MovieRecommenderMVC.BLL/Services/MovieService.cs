@@ -3,6 +3,8 @@ using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 using MovieRecommenderMVC.DAL.Entities;
 using MovieRecommenderMVC.BLL.Models;
 using System.Collections.Generic;
+using MovieRecommenderMVC.DAL.Models;
+using System.Linq;
 
 namespace MovieRecommenderMVC.BLL.Services
 {
@@ -67,6 +69,24 @@ namespace MovieRecommenderMVC.BLL.Services
         {
             var entity = _movieRepository.Get(id);
             Delete(entity);
+        }
+
+        public List<MovieModel> GetPaginatedMovies(PagingModel pagingModel, string userId)
+        {
+            var movies = _movieRepository.GetPaginatedMovies(pagingModel).Results.ToList();
+            var movieModels = new List<MovieModel>();
+            foreach (var movie in movies)
+            {
+                var userMovie = _ratingRepository.GetByUserAndMovie(movie.MovieId, userId);
+                movieModels.Add(new MovieModel()
+                {
+                    MovieId = movie.MovieId,
+                    MovieName = movie.Name,
+                    MovieGanre = movie.Ganre?.GenreName,
+                    Rating = userMovie?.Rating
+                });
+            }
+            return movieModels;
         }
     }
 }

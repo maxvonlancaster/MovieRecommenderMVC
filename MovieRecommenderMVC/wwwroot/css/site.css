@@ -25,7 +25,7 @@ body {
 
 .go-to-page-bottom {
     margin-left: 50px;
-    margin-top: 180px;
+    margin-top: 280px;
 }
 
 .action-column {
@@ -63,7 +63,7 @@ body {
 }
 
 .table-movies {
-    margin-left: 80px !important;
+    margin-left: 0px !important;
     margin-right: 20px !important;
     width: 95% !important;
 }
@@ -101,5 +101,7 @@ body {
     .is-selected {
       color: #FFD700 !important;
     }
-    
 
+.row-movie {
+    margin-left: 30px;
+}

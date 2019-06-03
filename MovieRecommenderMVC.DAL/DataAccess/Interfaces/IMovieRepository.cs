@@ -5,5 +5,6 @@ namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie, int>
     {
+        EntityFrameworkPaginate.Page<Movie> GetPaginatedMovies(Models.PagingModel pagingModel);
     }
 }
