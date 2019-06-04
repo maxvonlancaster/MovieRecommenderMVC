@@ -27,7 +27,7 @@ class Filter extends Component {
         this.handleDropDownChangePager = this.handleDropDownChangePager.bind(this);
         this.handleSubmitFilter = this.handleSubmitFilter.bind(this);
 
-
+        this.submitClicked = this.submitClicked.bind(this);
     }
 
     handleDropDownChangeFilter(e) {
@@ -62,20 +62,26 @@ class Filter extends Component {
     }
 
     handleSubmitFilter(e) {
-        var values = [this.state.pageSize,
-            this.state.pageNumber,
+        var values = [Number(this.state.pageSize),
+            this.state.pageNumber === null ? 1 : this.state.pageNumber,
             this.state.sortBy,
             this.state.isDescending,
             this.state.searchBy,
             this.state.searchText];
         this.props.setValue(values);
+        e.preventDefault();
+    }
+
+    submitClicked(e) {
+        e.preventDefault();
     }
 
 
         render() {
             return (
                 <div>
-                <form className="form" onSubmit={this.handleSubmitFilter} id="filter-form" target="hiddenFrame">
+                    <form className="form" onSubmit={this.handleSubmitFilter} id="filter-form" target="hiddenFrame"
+                        >
                     <div className="container">
                     <div className="row">
                             <div className="col-xs-2">

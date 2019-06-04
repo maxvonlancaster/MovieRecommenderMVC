@@ -19,7 +19,7 @@ class Grid extends Component {
             popoverOpen: false,
             genres: [],
             MovieGanre: "",
-            pagingModel: {
+            pagingModel: this.props.pagingModel || {
                 pageSize: 10,
                 pageNumber: 1,
                 sortBy: null,
@@ -33,13 +33,37 @@ class Grid extends Component {
         this.toggle = this.toggle.bind(this);
         this.tableBody = this.tableBody.bind(this);
         this.tableHeaders = this.tableHeaders.bind(this);
+        this.ajaxCall = this.ajaxCall.bind(this);
     }
 
-    //componentWillReceiveProps(nextProps) {
-    //    this.setState({
-    //        pagingModel: nextProps.store.getState()
-    //    })
-    //}
+    componentWillReceiveProps(nextProps) {
+        //console.log(nextProps);
+        this.setState({
+            pagingModel: nextProps.pagingModel,
+        });
+
+        
+    }
+
+    ajaxCall() {
+        const response = fetch("Movie/getPagedMovies", {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                'pageSize': this.state.pagingModel.pageSize,
+                'pageNumber': this.state.pagingModel.pageNumber,
+                'sortBy': this.state.pagingModel.sortBy,
+                'isDescending': this.state.pagingModel.isDescending,
+                'searchBy': this.state.pagingModel.searchBy,
+                'searchText': this.state.pagingModel.searchText,
+            })
+        })
+            .then(res => res.json())
+            .then((result) => { this.setState({ data: result }) });
+    }
 
     componentDidMount() {
         //fetch("Movie/getAllMovies")
@@ -159,8 +183,32 @@ class Grid extends Component {
     //        return <div>id = {item.movieId}, Name = {item.name}, Ganre = {item.ganre} </div>})
     //}
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.pagingModel !== this.state.pagingModel) {
+            console.log("DidUpdate: ", prevState, this.state);
+            const response = fetch("Movie/getPagedMovies", {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'pageSize': this.state.pagingModel.pageSize,
+                    'pageNumber': this.state.pagingModel.pageNumber,
+                    'sortBy': this.state.pagingModel.sortBy,
+                    'isDescending': this.state.pagingModel.isDescending,
+                    'searchBy': this.state.pagingModel.searchBy,
+                    'searchText': this.state.pagingModel.searchText,
+                })
+            })
+                .then(res => res.json())
+                .then((result) => { this.setState({ data: result }) });
+        }
+    }
+
     render() {
         console.log(this.state);
+        //this.ajaxCall();
         //const store = createStore(reducer);
         return (
             <div>
@@ -177,10 +225,10 @@ class Grid extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("mapState fired in GRID")
+    console.log("mapState fired in GRID:", state);
     return {
         pagingModel: state,
     }
 }
 
-export default connect(mapStateToProps, null)(Grid);
+export default connect(mapStateToProps)(Grid);
