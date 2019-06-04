@@ -25,12 +25,11 @@ export default class PopoverUpdateMovie extends Component {
 
     setDropDownList() {
         return this.state.genres.map(function (genre) {
-            return <option>{genre.genreName}</option>
+            return <option key={genre.genreName} >{genre.genreName}</option>
         })
     }
 
     handleChangeUpdate(e) {
-        console.log(e.target.value);
         //this.state.data.movieName = e.target.value;
         this.setState({ data: { movieName: e.target.value, movieGanre: this.state.data.movieGanre } });
     }

@@ -55,7 +55,7 @@ export default class MovieInput extends Component {
 
     setDropDownList() {
         return this.state.genres.map(function (genre) {
-            return <option>{genre.genreName}</option>
+            return <option key={genre.genreName} >{genre.genreName}</option>
         })
     }
 
@@ -68,13 +68,19 @@ export default class MovieInput extends Component {
             <div className="row" id="contact">
                 <div className="filter">
                     <form className="form" onSubmit={this.handleSubmit} id="formContact">
-                        <label>Name</label>
-                        <input id="formName" name="formName" value={this.state.MovieName} onChange={this.handleChange} required />
-                        <label>Ganre</label>
+                        <div className="form-group">
+                            <label className="label-dafault label-form-update">Name</label>
+                            <input id="formName" name="formName" value={this.state.MovieName} onChange={this.handleChange} required />
+                        </div>
+                        <div className="form-group">
+                            <label className="label-dafault label-form-update">Ganre</label>
                         <select id="formDropDownGanre" onChange={this.handleDropDownChange}>
                             {this.setDropDownList()}
-                        </select>
-                        <input type="submit" value="Submit" className="btn--cta" id="btn-submit" />
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Submit" className="btn--cta" id="btn-submit" />
+                        </div>
                     </form>
                 </div>
             </div>

@@ -17,5 +17,7 @@ namespace MovieRecommenderMVC.BLL.Services.Interfaces
         void Delete(Movie entity);
 
         void DeleteById(int id);
+
+        List<MovieModel> GetPaginatedMovies(DAL.Models.PagingModel pagingModel, string userId);
     }
 }

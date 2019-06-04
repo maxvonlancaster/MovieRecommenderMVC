@@ -2,6 +2,7 @@
 using MovieRecommenderMVC.BLL.Models;
 using MovieRecommenderMVC.BLL.Services.Interfaces;
 using MovieRecommenderMVC.DAL.Entities;
+using MovieRecommenderMVC.DAL.Models;
 using System.Security.Claims;
 
 namespace MovieRecommenderMVC.Controllers
@@ -70,6 +71,15 @@ namespace MovieRecommenderMVC.Controllers
         {
             var genres = _genreService.GetAll(null);
             return Json(genres);
+        }
+
+        [HttpPost]
+        [Route("getPagedMovies")]
+        public ActionResult GetPagedMovies([FromBody]PagingModel pagingModel)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var movies = _movieService.GetPaginatedMovies(pagingModel, userId);
+            return Json(movies);
         }
     }
 }
