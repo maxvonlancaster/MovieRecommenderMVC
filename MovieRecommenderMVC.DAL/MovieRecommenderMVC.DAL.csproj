@@ -5,14 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190501143901_one.cs" />
+    <Compile Remove="Migrations\20190504192456_User.cs" />
+    <Compile Remove="Migrations\20190504192809_User2.cs" />
+    <Compile Remove="Migrations\20190504194227_User3.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="MovieConnection.db" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="EntityFrameworkPaginate" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
   </ItemGroup>
 

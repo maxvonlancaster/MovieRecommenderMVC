@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MovieRecommenderMVC.DAL.Entities;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, string>
     {
+
     }
 }

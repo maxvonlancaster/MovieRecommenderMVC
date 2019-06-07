@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieRecommenderMVC.DAL.Entities;
 
 namespace MovieRecommenderMVC.DAL.Context
@@ -18,5 +14,15 @@ namespace MovieRecommenderMVC.DAL.Context
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserMovie> UserMovies { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<Director> Directors { get; set; }
+
+        public DbSet<ActorMovie> ActorMovies { get; set; }
+
+        public DbSet<Microsoft.AspNetCore.Identity.IdentityUserClaim<string>> IdentityUserClaims { get; set; }
     }
 }

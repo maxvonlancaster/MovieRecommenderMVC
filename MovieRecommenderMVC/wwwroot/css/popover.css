@@ -1,0 +1,17 @@
+﻿body {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+}
+
+.popover {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+    padding: 10px !important;
+}
+
+.custom-update-popover {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+    width: 450px;
+}
+
+.label-form-update {
+    margin: 3px !important;
+}

@@ -1,14 +1,13 @@
 ﻿using MovieRecommenderMVC.DAL.Context;
 using MovieRecommenderMVC.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
-    class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly MovieDbContext _movieDbContext;
 
@@ -18,12 +17,29 @@ namespace MovieRecommenderMVC.DAL.DataAccess
 
         public void Add(User entity) {
             _movieDbContext.Users.Add(entity);
+            _movieDbContext.SaveChanges();
         }
 
-        public List<User> GetAll(List<int> ids) {
+        public User Get(string id) {
             return _movieDbContext.Users
-                .Where(u => ids.Contains(u.UserId))
+                .Where(u => u.Id == id)
+                .FirstOrDefault();
+        }
+
+        public List<User> GetAll(List<string> ids) {
+            return _movieDbContext.Users
+                .Where(u => ids.Contains(u.Id))
                 .ToList();
+        }
+
+        public void Update(User entity) {
+            _movieDbContext.Users.Update(entity);
+            _movieDbContext.SaveChanges();
+        }
+
+        public void Delete(User entity) {
+            _movieDbContext.Users.Remove(entity);
+            _movieDbContext.SaveChanges();
         }
     }
 }

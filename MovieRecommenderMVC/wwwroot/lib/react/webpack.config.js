@@ -6,11 +6,12 @@ module.exports = env => {
     return {
         context: __dirname,
         entry: {
-            app: './index.js'
+            app: './index.js',
+            movieApp: './Movies.js'
         },
         output: {
             path: __dirname + "/dist",
-            filename: 'bundle.js'
+            filename: '[name]bundle.js'
             //path: path.resolve(__dirname, 'dist')
         },
         resolve: {
@@ -27,7 +28,7 @@ module.exports = env => {
                     // more options in the optional jshint object
                     options: {  // :arrow_left: formally jshint property
                         presets: ['babel-preset-env', 'babel-preset-react', 'react'],
-                        plugins: ["transform-class-properties"]
+                        plugins: ["transform-class-properties", "babel-plugin-transform-object-rest-spread"]
                     }
                 }]
             },
