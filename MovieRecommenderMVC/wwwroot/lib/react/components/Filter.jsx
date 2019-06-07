@@ -6,7 +6,7 @@ class Filter extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            pageSize: null,
+            pageSize: 10,
             pageNumber: null,
             sortBy: null,
             isDescending: null,
@@ -99,8 +99,7 @@ class Filter extends Component {
                                     className="label-form-update"
                                     name="no-redirect"
                             value={this.state.searchText}
-                            onChange={this.handleChangeFilter}
-                            required />
+                            onChange={this.handleChangeFilter}/>
                             </div>
                             <div className="col-xs-2">
                                 <div>

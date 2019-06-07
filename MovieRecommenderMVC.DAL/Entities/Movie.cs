@@ -12,5 +12,7 @@ namespace MovieRecommenderMVC.DAL.Entities
         public string Name { get; set; }
 
         public Genre Ganre { get; set; }
+
+        public Director Director { get; set; }
     }
 }
