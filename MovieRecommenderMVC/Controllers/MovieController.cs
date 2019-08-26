@@ -12,6 +12,7 @@ namespace MovieRecommenderMVC.Controllers
     {
         private readonly IMovieService _movieService;
         private readonly IGenreService _genreService;
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public MovieController(IMovieService movieService, IGenreService genreService)
         {
@@ -77,6 +78,7 @@ namespace MovieRecommenderMVC.Controllers
         [Route("getPagedMovies")]
         public ActionResult GetPagedMovies([FromBody]PagingModel pagingModel)
         {
+            Logger.Info("Got movies");
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var movies = _movieService.GetPaginatedMovies(pagingModel, userId);
             return Json(movies);

@@ -12,4 +12,24 @@
     <ProjectReference Include="..\MovieRecommenderMVC.DAL\MovieRecommenderMVC.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Patterns\Behavioral\ChainsOfResponsibilities\" />
+    <Folder Include="Patterns\Behavioral\Commands\" />
+    <Folder Include="Patterns\Behavioral\Iterators\" />
+    <Folder Include="Patterns\Behavioral\Mediators\" />
+    <Folder Include="Patterns\Behavioral\Mementos\" />
+    <Folder Include="Patterns\Behavioral\Visitors\" />
+    <Folder Include="Patterns\Behavioral\TemplateMethods\" />
+    <Folder Include="Patterns\Behavioral\Strategies\" />
+    <Folder Include="Patterns\Behavioral\States\" />
+    <Folder Include="Patterns\Behavioral\Observers\" />
+    <Folder Include="Patterns\Structural\Adapters\" />
+    <Folder Include="Patterns\Structural\Bridges\" />
+    <Folder Include="Patterns\Structural\Composites\" />
+    <Folder Include="Patterns\Structural\Decorators\" />
+    <Folder Include="Patterns\Structural\Facades\" />
+    <Folder Include="Patterns\Structural\Flyweights\" />
+    <Folder Include="Patterns\Structural\Proxies\" />
+  </ItemGroup>
+
 </Project>

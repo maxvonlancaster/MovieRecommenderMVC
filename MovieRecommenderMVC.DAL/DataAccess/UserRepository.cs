@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
+using System;
+using System.Linq.Expressions;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
@@ -40,6 +42,11 @@ namespace MovieRecommenderMVC.DAL.DataAccess
         public void Delete(User entity) {
             _movieDbContext.Users.Remove(entity);
             _movieDbContext.SaveChanges();
+        }
+
+        public List<User> GetConditional(Expression<Func<User, bool>> lambda)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,3 +5,25 @@
     margin-left: 100px;
 
 }
+
+.top-buffer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.column-right-cust {
+    margin-right: -20px !important;
+    width: 460px !important;
+    margin-left: -10px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.column-left-cust {
+    margin-left: -100px !important;
+}
+
+.column-left-cust-inner {
+    margin: 30px;
+    position: relative;
+}

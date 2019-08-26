@@ -79,20 +79,21 @@ class Filter extends Component {
 
         render() {
             return (
-                <div>
+                <div className="col-lg-4 container">
                     <form className="form" onSubmit={this.handleSubmitFilter} id="filter-form" target="hiddenFrame"
                         >
                     <div className="container">
-                    <div className="row">
-                            <div className="col-xs-2">
+                            <div className="row mb-3 top-buffer">
+                               <div>
+                                <span className="">
 
                         <label className="label-dafault label-form-update">Search by:</label>
                         <select id="filter-select" className="label-form-update"
                             onChange={this.handleDropDownChangeFilter}>
                             {this.setDropDownList()}
                         </select>
-                    </div>
-                            <div className="col-xs-2">
+                                    </span>
+                                    <span className="">
                         <label className="label-dafault label-form-update">Search text</label>
                         <input
                             id="filter-input"
@@ -100,26 +101,30 @@ class Filter extends Component {
                                     name="no-redirect"
                             value={this.state.searchText}
                             onChange={this.handleChangeFilter}/>
-                            </div>
-                            <div className="col-xs-2">
-                                <div>
+                                    </span>
+                                    </div>
+                            <div className="">
+                                    <span>
                                     <label className="label-dafault label-form-update">Items per page:</label>
-                                </div>
+                                    </span>
                                     <select id="filter-select-paging" className="label-form-update"
                                     onChange={this.handleDropDownChangePager}>
                                     {this.setDropDownListPager()}
                                 </select>
+                                </div>
                             </div>
-                            <div className="col-xs-1">
+
+                            <div className="row mb-3 top-buffer">
+                            <div className="">
                                 <div>
                                     <button className="glyphicon glyphicon-chevron-left" />
                                     <button className="glyphicon glyphicon-chevron-right" />
                                 </div>
                             </div>
-                            <div className="col-xs-1">
-                    <div>
+                            <div className="">
+                                    <span>
                         <input type="submit" value="Submit" className="btn--cta" id="button-filter-submit" />
-                        </div>
+                                    </span>
                         </div>
                         </div>
                         </div>

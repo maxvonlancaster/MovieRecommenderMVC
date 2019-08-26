@@ -27,8 +27,8 @@ ReactDOM.render(
         document.getElementById("cont")
 );
 
-ReactDOM.render(
-    <MovieInput />,
-    document.getElementById("movieInput")
-);
+//ReactDOM.render(
+//    <MovieInput />,
+//    document.getElementById("movieInput")
+//);
 

@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/popover.css" />
         <link rel="stylesheet" href="~/css/movies.css" />
+        @*<link rel="stylesheet" href="~/css/css4/bootstrap.css" />*@
+
 
     </environment>
     <environment exclude="Development">
@@ -20,10 +22,10 @@
     </environment>
 </head>
 <body>
-    <div class="glyphicon glyphicon-chevron-down go-to-page-bottom sidenav"
+    @*<div class="glyphicon glyphicon-chevron-down go-to-page-bottom sidenav"
           onclick="window.scrollTo(0,document.body.scrollHeight);">
 
-    </div>
+    </div>*@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             
@@ -51,7 +53,7 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    <div class="container body-content container-main-cust">
         
         @RenderBody()
         <hr />

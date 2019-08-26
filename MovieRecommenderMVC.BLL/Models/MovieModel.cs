@@ -1,4 +1,7 @@
-﻿namespace MovieRecommenderMVC.BLL.Models
+﻿using MovieRecommenderMVC.DAL.Entities;
+using System.Collections.Generic;
+
+namespace MovieRecommenderMVC.BLL.Models
 {
     public class MovieModel
     {
@@ -9,5 +12,9 @@
         public string MovieGanre { get; set; }
 
         public int? Rating { get; set; }
+
+        public List<Actor> Actors { get; set; }
+
+        public Director Director { get; set; }
     }
 }

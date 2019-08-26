@@ -3,6 +3,7 @@ using MovieRecommenderMVC.BLL.Services;
 using MovieRecommenderMVC.BLL.Services.Interfaces;
 using MovieRecommenderMVC.DAL.DataAccess;
 using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
+using MovieRecommenderMVC.DAL.MongoDBAccess;
 
 namespace MovieRecommenderMVC.Extensions
 {
@@ -20,6 +21,8 @@ namespace MovieRecommenderMVC.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
+
+            services.AddScoped<MongoDbContext>();
 
 
             // Add all other services here.

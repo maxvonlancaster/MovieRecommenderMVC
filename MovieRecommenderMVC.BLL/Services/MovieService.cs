@@ -49,7 +49,8 @@ namespace MovieRecommenderMVC.BLL.Services
                     MovieId = movie.MovieId,
                     MovieName = movie.Name,
                     MovieGanre = movie.Ganre?.GenreName,
-                    Rating = userMovie?.Rating 
+                    Rating = userMovie?.Rating,
+                    Director = movie.Director
                 });
             }
             return movieModels;

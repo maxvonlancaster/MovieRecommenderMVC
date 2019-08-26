@@ -15,5 +15,7 @@ namespace MovieRecommenderMVC.DAL.DataAccess.Interfaces
         void Update(T entity);
 
         void Delete(T entity);
+
+        List<T> GetConditional(System.Linq.Expressions.Expression<Func<T, bool>> lambda);
     }
 }

@@ -6,6 +6,9 @@ using System.Linq;
 using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 using EntityFrameworkPaginate;
 using MovieRecommenderMVC.DAL.Models;
+using System;
+using System.Linq.Expressions;
+using MovieRecommenderMVC.DAL.MongoDBAccess;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
@@ -13,15 +16,20 @@ namespace MovieRecommenderMVC.DAL.DataAccess
     {
         private readonly MovieDbContext _movieDbContext;
 
-        public MovieRepository(MovieDbContext context)
+        private readonly MongoDbContext _mongoDbContext;
+
+        public MovieRepository(MovieDbContext context, MongoDbContext mcontext)
         {
             _movieDbContext = context;
+            _mongoDbContext = mcontext;
         }
 
-        public void Add(Movie entity)
+        public async void Add(Movie entity)
         {
             _movieDbContext.Movies.Add(entity);
             _movieDbContext.SaveChanges();
+            var collection = _mongoDbContext.database.GetCollection<Movie>("Movies");
+            await collection.InsertOneAsync(entity);
         }
 
         public Movie Get(int id)
@@ -29,6 +37,7 @@ namespace MovieRecommenderMVC.DAL.DataAccess
             return _movieDbContext.Movies
                 .Where(m => m.MovieId == id)
                 .Include(m => m.Ganre)
+                .Include(m => m.Director)
                 .FirstOrDefault();
         }
 
@@ -39,12 +48,13 @@ namespace MovieRecommenderMVC.DAL.DataAccess
                 return _movieDbContext.Movies
                     .Where(m => ids.Contains(m.MovieId))
                     .Include(m => m.Ganre)
-                    .ToList();
+                    .Include(m => m.Director).ToList();
             }
             else
             {
                 var movies = _movieDbContext.Movies
                     .Include(m => m.Ganre)
+                    .Include(m => m.Director)
                     .ToList();
                 return movies;
             }
@@ -79,6 +89,13 @@ namespace MovieRecommenderMVC.DAL.DataAccess
 
             movies = _movieDbContext.Movies.Paginate(pagingModel.PageNumber, pagingModel.PageSize, sortings, filters);
             return movies;
+        }
+
+        public List<Movie> GetConditional(Expression<Func<Movie, bool>> lambda)
+        {
+            return _movieDbContext.Movies
+                .Where(lambda)
+                .ToList();
         }
     }
 }

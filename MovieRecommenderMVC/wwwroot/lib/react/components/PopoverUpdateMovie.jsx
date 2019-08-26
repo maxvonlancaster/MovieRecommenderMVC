@@ -5,6 +5,7 @@ export default class PopoverUpdateMovie extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: props.data.movieId,
             data: props.data || null,
             target: props.target || null,
             popoverOpen: false,
@@ -41,7 +42,6 @@ export default class PopoverUpdateMovie extends Component {
 
     handleSubmitUpdate(e) {
         e.preventDefault();
-        console.log(this.state.data);
 
         if (this.state.data.movieGanre == "") {
             this.state.data.movieGanre = this.state.genres[0].genreName;
@@ -54,7 +54,7 @@ export default class PopoverUpdateMovie extends Component {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({
-                'movieId': this.state.data.movieId,
+                'movieId': this.state.id,
                 'movieName': this.state.data.movieName,
                 'movieGanre': this.state.data.movieGanre
             })

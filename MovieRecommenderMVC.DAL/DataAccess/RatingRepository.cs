@@ -2,8 +2,10 @@
 using MovieRecommenderMVC.DAL.Context;
 using MovieRecommenderMVC.DAL.DataAccess.Interfaces;
 using MovieRecommenderMVC.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace MovieRecommenderMVC.DAL.DataAccess
 {
@@ -56,6 +58,14 @@ namespace MovieRecommenderMVC.DAL.DataAccess
             }
         }
 
+        public IQueryable<UserMovie> GetAllByUser(string userId)
+        {
+            return _movieDbContext.UserMovies
+                .Where(u => u.User.Id == userId)
+                .Include(u => u.Movie)
+                .Include(u => u.User);
+        }
+            
         public void Update(UserMovie entity)
         {
             // REWRITE
@@ -69,6 +79,15 @@ namespace MovieRecommenderMVC.DAL.DataAccess
             return _movieDbContext.UserMovies
                 .Where(u => u.User.Id == userId && u.Movie.MovieId == movieId)
                 .FirstOrDefault();
+        }
+
+        public List<UserMovie> GetConditional(Expression<Func<UserMovie, bool>> lambda)
+        {
+            return _movieDbContext.UserMovies
+                .Where(lambda)
+                .Include(u => u.Movie)
+                .Include(u => u.User)
+                .ToList();
         }
     }
 }

@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import Rating from './Rating.jsx';
 import Filter from './Filter';
+import Sidebar from './Sidebar';
 import PopoverUpdateMovie from './PopoverUpdateMovie.jsx';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -9,6 +10,8 @@ import reducer from '../store/reducer';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import MovieInput from './MovieInput.jsx';
+
 
 class Grid extends Component {
     constructor(props) {
@@ -206,21 +209,43 @@ class Grid extends Component {
         }
     }
 
+    getRecommendations()
+    {
+
+    }
+
     render() {
         console.log(this.state);
         //this.ajaxCall();
         //const store = createStore(reducer);
         return (
             <div>
-                <div>
+                <div class="col-sm-8 blog-main col-lg-8 column-left-cust">
+                    <div className="top-buffer">
+                    <button onClick={this.getRecommendations()}>
+                        Get recommended
+                       </button>
+                    </div>
+                    <div className="card top-buffer">
                     <Provider store={this.props.store}><Filter pagingModel={this.state.pagingModel} /></Provider>
-        </div>
-            <div>
+                    </div>
+                    <div className="card top-buffer">
             <table className="table table-bordered table-hover table-movies table-striped">
                 {this.tableHeaders()}
                 <tbody>{this.tableBody()}</tbody>
-            </table>
-        </div></div>)
+                        </table>
+                        </div>
+                </div>
+                <div className="col-md-4 column-right-cust">
+                    
+                    <div className="card btn-group">
+                        <div className="column-left-cust-inner">
+                        <Sidebar />
+                    <MovieInput />             
+                        </div>
+                        </div>
+</div>
+            </div>)
     }
 }
 
